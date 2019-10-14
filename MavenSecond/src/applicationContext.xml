@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+ 
+    <bean name="car1" class="Car">
+        <property name="grade" value="大众"/>
+        <property name="color" value="白色"/>
+        <property name="displacement" value="1.8T"/>
+    </bean>
+     <bean name="car2" class="Car">
+        <property name="grade" value="保时捷"/>
+        <property name="color" value="灰色"/>
+        <property name="displacement" value="3.0T"/>
+    </bean>
+    <bean name="boss1" class="Boss">
+        <property name="name" value="老板1"/>
+        <property name="company" value="公司1"/>
+        <property name="car" ref="car1"/>
+        <property name="hobby" value="篮球"/>
+    </bean>
+        <bean name="boss2" class="Boss">
+        <property name="name" value="老板2"/>
+        <property name="company" value="公司2"/>
+        <property name="car" ref="car2"/>
+        <property name="hobby" value="跑步"/>
+    </bean>
+    
+    <bean name="metting1" class="Metting">
+        <property name="theme" value="主题"/>
+        <property name="boss" ref="boss1"/>
+    </bean>
+    <bean name="metting2" class="Metting">
+        <property name="theme" value="主题"/>
+        <property name="boss" ref="boss2"/>
+    </bean>
+    
+</beans>

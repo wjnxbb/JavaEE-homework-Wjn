@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="
+    	http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+    	http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+    	http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+    	http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd">
+	
+	<!-- 注册StudentServiceImpl -->
+<bean id="studentService" class="advice.StudentServiceImpl"></bean>	
+	
+	<!-- 注册切面 -->
+<bean id="beforeAdvice" class="advice.MyBeforeAdvice"></bean>
+<bean id="beforeProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+	<property name="target" ref="studentService" />
+	<property name="interfaces" value="advice.IStudentService" />
+	<property name="interceptorNames" value="beforeAdvice" />
+</bean>
+<!-- 注册后置切面 -->
+<bean id="afterAdvice" class="after.MyAfterAdvice"></bean>
+<bean id="afterProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+	<property name="target" ref="studentService" />
+	<property name="interceptorNames" value="afterAdvice" />
+</bean>
+<!-- 注册异常切面 -->
+<bean id="throwsAdvice" class="trouble.MyThrowsAdvice"></bean>
+<bean id="throwsProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+	<property name="target" ref="studentService" />
+	<property name="interceptorNames" value="throwsAdvice" />
+</bean>
+
+</beans>

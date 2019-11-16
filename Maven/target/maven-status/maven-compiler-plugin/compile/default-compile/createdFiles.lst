@@ -1,0 +1,8 @@
+com\mapper\BaseMapper.class
+com\controller\LoginController.class
+com\mapper\UserMapper.class
+com\asepct\MyAspect.class
+com\config\Config.class
+com\entity\User.class
+com\service\impl\UserServiceImpl.class
+com\service\UserService.class
